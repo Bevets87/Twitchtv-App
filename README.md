@@ -1,4 +1,4 @@
-# Twitchtv-app
+# Twitchtv-App
 
 ### User Stories:
 
