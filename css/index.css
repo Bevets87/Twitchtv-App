@@ -1,0 +1,58 @@
+body {
+  background: rgba(110, 103, 121, 0.3); }
+
+.app-container {
+  background: #4b367c;
+  height: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-radius: 10px; }
+
+nav.navbar {
+  flex-direction: row;
+  justify-content: space-between; }
+  nav.navbar div, nav.navbar div form {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  nav.navbar .navbar-brand {
+    font-size: 65px;
+    color: white;
+    font-weight: bold; }
+    nav.navbar .navbar-brand:hover {
+      color: white; }
+    nav.navbar .navbar-brand .fa-twitch {
+      color: white; }
+  nav.navbar #select-input {
+    font-size: 25px;
+    height: 50px; }
+
+.entries-container {
+  background: #b19dd8;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 10px; }
+  .entries-container .entry {
+    color: #4b367c;
+    background: #faf9fa;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    margin-top: 20px; }
+    .entries-container .entry div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 80px; }
+      .entries-container .entry div img {
+        height: inherit; }
+      .entries-container .entry div a {
+        text-decoration: none;
+        color: inherit; }
+        .entries-container .entry div a:hover {
+          color: #6e6779; }
+      .entries-container .entry div .status {
+        margin-right: 50px; }
