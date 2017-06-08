@@ -8,32 +8,50 @@ body {
   margin-bottom: 50px;
   padding-bottom: 50px;
   border-radius: 10px; }
+  @media (max-width: 768px) {
+    .app-container {
+      width: 95%; } }
 
 nav.navbar {
   flex-direction: row;
   justify-content: space-between; }
+  @media (max-width: 768px) {
+    nav.navbar {
+      flex-direction: column; } }
   nav.navbar div, nav.navbar div form {
     height: inherit;
     display: flex;
     flex-direction: column;
     justify-content: center; }
   nav.navbar .navbar-brand {
-    font-size: 65px;
+    font-size: 55px;
     color: white;
-    font-weight: bold; }
-    nav.navbar .navbar-brand:hover {
-      color: white; }
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
     nav.navbar .navbar-brand .fa-twitch {
       color: white; }
+    nav.navbar .navbar-brand h1 {
+      margin-top: 18px; }
+      @media (max-width: 500px) {
+        nav.navbar .navbar-brand h1 {
+          font-size: 25px; } }
   nav.navbar #select-input {
     font-size: 25px;
     height: 50px; }
+    @media (max-width: 768px) {
+      nav.navbar #select-input {
+        font-size: 20px; } }
 
 .entries-container {
   background: #b19dd8;
   padding-top: 25px;
   padding-bottom: 25px;
   border-radius: 10px; }
+  @media (max-width: 768px) {
+    .entries-container {
+      width: 95%; } }
   .entries-container .entry {
     color: #4b367c;
     background: #faf9fa;
@@ -42,11 +60,14 @@ nav.navbar {
     justify-content: space-between;
     height: 80px;
     margin-top: 20px; }
+    @media (max-width: 500px) {
+      .entries-container .entry {
+        height: 60px; } }
     .entries-container .entry div {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 80px; }
+      height: inherit; }
       .entries-container .entry div img {
         height: inherit; }
       .entries-container .entry div a {
@@ -54,5 +75,13 @@ nav.navbar {
         color: inherit; }
         .entries-container .entry div a:hover {
           color: #6e6779; }
+      @media (max-width: 500px) {
+        .entries-container .entry div .name {
+          font-size: 15px;
+          font-weight: bold; } }
       .entries-container .entry div .status {
         margin-right: 50px; }
+        @media (max-width: 500px) {
+          .entries-container .entry div .status {
+            margin-right: 0;
+            font-size: 15px; } }

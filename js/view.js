@@ -26,7 +26,6 @@
     var self = this;
     var viewCommands = {
       'showEntry': function () {
-        console.dir(data)
         var status;
         if (!data.streamData.stream) {
           status = 'off-line';
