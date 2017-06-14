@@ -6,12 +6,18 @@
     self.model = model;
     self.view = view;
 
-    self.view.bind('getTwitchUsers', function () {
+    self.view.bind('setTwitchProfiles', function () {
+      self.view.render('clearEntries');
       self.model.read(function (twitchUsers) {
-        twitchUsers.map(function (twitchUser) {
-          self.getTwitchUserProfile(twitchUser, function (profileData) {
+        twitchUsers.forEach(function (twitchUser, index) {
+          var status, logo;
+          self.getTwitchUserProfile(twitchUser.name, function (profileData) {
+            logo = !profileData.logo ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png' : profileData.logo;
             self.getTwitchUserStream(profileData.name, function (streamData) {
-              self.view.render('showEntry',{streamData: streamData, profileData: profileData})
+              status = !streamData.stream ? 'off-line' : streamData.stream.game;
+              self.model.update(index, {logo: logo, status: status}, function (twitchUser) {
+                self.view.render('showEntry', twitchUser);
+              })
             })
           })
         })
@@ -23,43 +29,36 @@
       case 'All':
         self.view.render('clearEntries');
         self.model.read(function (twitchUsers) {
-          twitchUsers.map(function (twitchUser) {
-            self.getTwitchUserProfile(twitchUser, function (profileData) {
-              self.getTwitchUserStream(profileData.name, function (streamData) {
-                self.view.render('showEntry',{streamData: streamData, profileData: profileData})
-              })
-            })
+          twitchUsers
+          .map(function (twitchUser) {
+            self.view.render('showEntry', twitchUser);
           })
         })
         break;
       case 'Online':
-        self.view.render('clearEntries');
+        self.view.render('clearEntries')
         self.model.read(function (twitchUsers) {
-          twitchUsers.map(function (twitchUser) {
-            self.getTwitchUserProfile(twitchUser, function (profileData) {
-              self.getTwitchUserStream(profileData.name, function (streamData) {
-                if (streamData.stream) {
-                  self.view.render('showEntry',{streamData: streamData, profileData: profileData})
-                }
-              })
-            })
+          twitchUsers
+          .filter(function (twitchUser) {
+            return twitchUser.status !== 'off-line';
+          })
+          .map(function (twitchUser) {
+            self.view.render('showEntry', twitchUser);
           })
         })
         break;
       case 'Offline':
         self.view.render('clearEntries');
         self.model.read(function (twitchUsers) {
-          twitchUsers.map(function (twitchUser) {
-            self.getTwitchUserProfile(twitchUser, function (profileData) {
-              self.getTwitchUserStream(profileData.name, function (streamData) {
-                if (!streamData.stream) {
-                  self.view.render('showEntry',{streamData: streamData, profileData: profileData})
-                }
-              })
-            })
+          twitchUsers
+          .filter(function (twitchUser) {
+            return twitchUser.status === 'off-line';
+          })
+          .map(function (twitchUser) {
+            self.view.render('showEntry', twitchUser);
           })
         })
-       break;
+        break;
       }
     })
 

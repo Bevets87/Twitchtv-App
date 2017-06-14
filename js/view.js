@@ -10,7 +10,7 @@
 
   View.prototype.bind = function (event, handler) {
     var self = this;
-    if (event === 'getTwitchUsers') {
+    if (event === 'setTwitchProfiles') {
       window.addEventListener('load', function () {
         handler()
       })
@@ -26,21 +26,12 @@
     var self = this;
     var viewCommands = {
       'showEntry': function () {
-        var status;
-        if (!data.streamData.stream) {
-          status = 'off-line';
-        } else {
-          status = data.streamData.stream.game;
-        }
-        if (!data.profileData.logo) {
-          data.profileData.logo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png'
-        }
         var div = document.createElement('div');
         div.className = 'entry';
-        div.id = data.profileData.name;
-        div.innerHTML = '<div><img src='+ data.profileData.logo +'></a></div>';
-        div.innerHTML += '<div><a href="https://www.twitch.tv/"'+ data.profileData.name +' target="_blank"><h2 class="name">'+ data.profileData.name +'</h2></a></div>';
-        div.innerHTML += '<div><h2 class="status">'+ status +'</h2></div>';
+        div.id = data.name;
+        div.innerHTML = '<div><img src='+ data.logo +'></a></div>';
+        div.innerHTML += '<div><a href="https://www.twitch.tv/"'+ data.name +' target="_blank"><h2 class="name">'+ data.name +'</h2></a></div>';
+        div.innerHTML += '<div><h2 class="status">'+ data.status +'</h2></div>';
 
         self.$entriesContainer[0].append(div)
       },
