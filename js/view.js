@@ -16,7 +16,7 @@
       })
     }
     if (event === 'filterTwitchUser') {
-      self.$selectInput.addEventListener('click', function (e) {
+      self.$selectInput.addEventListener('change', function (e) {
         handler(e)
       })
     }
